@@ -1,0 +1,356 @@
+\documentclass[10pt,xcolor=dvipsnames,serif,professionalfont]{beamer} % " professionalfont " option
+\usepackage[T1]{fontenc}
+\usepackage{mathpazo}
+\usepackage{eulervm}
+\linespread{1.05}
+\usepackage{xspace}
+\usepackage{apacite}
+\usepackage{rotating}
+\usepackage{multirow}
+\input{andrews_commands}
+\setbeamerfont{title}{family=\it}
+\setbeamerfont{frametitle}{family=\it}
+
+
+\usepackage{amssymb,latexsym,amsmath,amsfonts,amscd}
+
+\usecolortheme[named=Gray]{structure} 
+\setbeamercolor{titlelike}{fg=black!60!red}
+\definecolor{Mygrey}{gray}{0.75}
+
+
+
+\title[Probability]{Probability: Joint, Conditional, Marginal, and Bayes' Theorem}
+\author[Andrews]{Mark Andrews}
+
+
+\institute[Nottingham Trent University] % (optional, but mostly needed)
+{
+  Division of Psychology \\
+  Nottingham Trent University}
+
+\date{}
+
+
+\begin{document}
+{
+\begin{frame}
+   \titlepage
+\end{frame}
+}
+
+\begin{frame}
+\frametitle{What is probability?}
+\begin{itemize}
+\item Probability is a means to quantify uncertainty.
+\item If a variable can take on more than one value, probability can be used to describe the certainty that is will take each one of its possible values.
+\item Probabilities must lie between zero and one.
+\item The sum of the probabilities of all values of a variable must equal one.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{What is probability? Notation}
+\begin{itemize}
+\item If $X$ is a variable with possible values $\{x_1, x_2 \ldots x_k \ldots x_K\}$, then 
+\begin{equation}
+\Prob{X = x_k} 
+\end{equation}
+gives the probability that $X$ takes the value $x_k$.
+\item The rules of probability require that
+\begin{equation}
+0 \leq \Prob{X = x_k} \leq 1 \quad \forall x_k 
+\end{equation}
+and
+\begin{equation}
+\sum_{k=1}^K \Prob{X = x_k} = 1.
+\end{equation}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Simple probability rules}
+\begin{itemize}
+\item If two values are mutually exclusive, then the probability of either happening is the \emph{sum} of their individual probabilities, i.e.
+\begin{equation}
+\Prob{X=x_k \ \text{or} \ X=x_j} = \Prob{X=x_k} + \Prob{X=x_j}.
+\end{equation}
+\item If two different variables are \emph{independent}, the joint probability of their outcomes is equal to the product of their individual outcomes, i.e. if $X$ and $Y$ are independent then
+\begin{equation}
+\Prob{X=x_k \ \text{and} \ Y=y_l} = \Prob{X=x_k} \times \Prob{Y=y_l}.
+\end{equation}
+\end{itemize}
+\end{frame}
+\begin{frame}
+\frametitle{Conditional, joint and marginal probability}
+\begin{itemize}
+\item We can discuss at least three different types of probability distributions,
+referred to as \emph{joint}, \emph{marginal} or \emph{conditional} probabilities. 
+\item There are
+fundamental relationships between them. 
+\item We can illustrate these concepts by looking at survival rates of males and females on \emph{RMS Titanic}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Frequency distribution of survival rates on \emph{Titanic}}
+\begin{itemize}
+\item The following table shows the number of men and women who died or survived on the \emph{Titanic}:
+
+\begin{center}
+\begin{table}
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & 1352 & 109 \\
+Survived & 338 & 316 \\
+\end{tabular}.
+\end{table}
+\end{center}
+\item Altogether, there were 2115 onboard.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Conditional and marginal probabilities using frequencies}
+\begin{itemize}
+\item From the numbers
+\begin{center}
+{\scriptsize
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & 1352 & 109 \\
+Survived & 338 & 316 \\
+\end{tabular},
+}
+\end{center}
+we are able to answer:
+\begin{enumerate}
+\item What is the overall probability of dying?
+\item What is the overall probability of being a man, or a woman?
+\item What is the probability of dying given the person is a man, or a woman?
+\item What is the probability of being a man given a person survived?
+\end{enumerate}
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{From frequencies to probabilities}
+\begin{itemize}
+\item We can convert the frequencies 
+\begin{center}
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & 1352 & 109 \\
+Survived & 338 & 316 \\
+\end{tabular},
+\end{center}
+to the probabilities 
+\begin{center}
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & .64 & .05 \\
+Survived & .16 & .15 \\
+\end{tabular},
+\end{center}
+by dividing each frequency by the total number onboard, i.e. 2115.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Joint probability tables}
+\begin{itemize}
+\item The table
+\begin{center}
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & .64 & .05 \\
+Survived & .16 & .15 \\
+\end{tabular},
+\end{center}
+is a \emph{joint probability} table.
+\item It provides the probability for every combination of the two variables. 
+\item It is just another probability distribution, like what we have met already.
+\item Each element in the table lies between 0 and 1 and together they must sum to 1.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Marginal probabilities from joint probabilities}
+\begin{itemize}
+\item From the table
+{\scriptsize
+\begin{center}
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & .64 & .05 \\
+Survived & .16 & .15 \\
+\end{tabular},
+\end{center}
+}
+what is the overall probability of dying?
+\item Recall that each element in the table provides the probability for a combination of values of the two variables, e.g. the probability of dying and being male is $.64$.
+\item Following the rules of probability, we calculate the probability of dying as follows:
+\begin{align}
+\Prob{\textrm{Perished}} &= \Prob{\textrm{Male \& Perished}} + \Prob{\textrm{Female \& Perished}},\\
+&= .64 + .05 = .69
+\end{align}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conditional probabilities from joint probabilities}
+\begin{itemize}
+\item From the table
+{\scriptsize
+\begin{center}
+\begin{tabular}{c|cc}
+& Men & Women \\\hline
+Perished & .64 & .05 \\
+Survived & .16 & .15 \\
+\end{tabular},
+\end{center}
+}
+what is the probability of dying if the person is a man?
+\item First, the probability of being a man onboard \emph{Titanic} is 
+\begin{align}
+\Prob{\textrm{Male}} &= \Prob{\textrm{Male \& Perished}} + \Prob{\textrm{Male \& Survived}},\\
+&= .64 + .16 = .8\ .
+\end{align}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conditional probabilities from joint probabilities (cont'd)}
+\begin{itemize}
+\item Then, what is the probability of being a man and dying? This is simply $.64$.
+\item Putting these together: 80\% of the ship's total was male and 64\% of the total were men who died. That means the fraction of men who died is 64/80, i.e.
+\begin{align}
+\Prob{\textrm{Perished} \given \textrm{Male}} &= \frac{\Prob{\textrm{Male \& Perished}}}{\Prob{\textrm{Male}}},\\
+&= \frac{.64}{.8} = .8 
+\end{align}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Calculating conditional probabilities from frequencies}
+\begin{itemize}
+\item Notice how we calculate the conditional probabilities.
+\item For example, the probability of dying if the person is a man is
+\begin{align}
+&\Prob{\textrm{Perished} \given \textrm{Male}} = \frac{\#(\textrm{Male \& Perished})}{\#(\textrm{Male})},\\
+&= \frac{\#(\textrm{Male \& Perished})}{\#(\textrm{Male \& Perished}) + \#(\textrm{Male \& Survived})},\\
+&= \frac{1352}{1352+338} = .8\ .
+\end{align}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conditional, joint and marginal probability: Rules}
+\begin{itemize}
+\item Conditional probability is the probability distribution of a variable when the value of another variable is known, i.e. 
+\begin{equation*}
+\Prob{X=x_k \given Y=y_l } 
+\end{equation*}
+is read as the ``the probability that $X$ is $x_k$ \emph{given} $Y$ is $y_l$''.
+\item Conditional probability can be derived from the joint probability as follows:
+\begin{equation*}
+\Prob{X=x_k \given Y=y_l } = \frac{\Prob{X=x_k, Y=y_l }}{ \Prob{Y=y_l } }
+\end{equation*}
+\item Marginal probability can also be derived from the joint probability as follows:
+\begin{equation*}
+\Prob{Y=y_l} = \sum_{k=1}^K \Prob{X=x_k, Y=y_l }.
+\end{equation*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conditional, joint and marginal: More Rules}
+\begin{itemize}
+\item As we have
+\begin{equation*}
+\Prob{X=x_k \given Y=y_l } = \frac{\Prob{X=x_k, Y=y_l }}{ \Prob{Y=y_l } }
+\end{equation*}
+then we also have 
+\begin{equation*}
+\Prob{X=x_k,Y=y_l} = \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l},
+\end{equation*}
+\item Likewise, given that
+\begin{equation*}
+\Prob{Y=y_l \given X=x_k} = \frac{\Prob{Y=y_l,X=x_k}}{\Prob{X=x_k}}
+\end{equation*}
+then 
+\begin{equation*}
+\Prob{Y=y_l,X=x_k} = \Prob{Y=y_l \given X=x_k}\Prob{X=x_k}.
+\end{equation*}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Putting the rules together}
+\begin{itemize}
+\item We have seen
+\begin{equation*}
+\Prob{X=x_k,Y=y_l} = \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l},
+\end{equation*}
+\ldots and 
+\begin{equation*}
+\Prob{Y=y_l,X=x_k} = \Prob{Y=y_l \given X=x_k}\Prob{X=x_k}.
+\end{equation*}
+\item As $\Prob{Y=y_l,X=x_k} = \Prob{X=x_k,Y=y_l}$, then
+\begin{align*}
+\Prob{Y=y_l \given X=x_k}\Prob{X=x_k} &= \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l}.
+\end{align*}
+%
+%\begin{align}
+%%\Prob{Y=y_l \given X=x_k}\Prob{X=x_k} &= \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l},\\
+%\Prob{Y=y_l \given X=x_k} &= \frac{\Prob{X=x_k\given Y=y_l}\Prob{Y=y_l}}{\Prob{X=x_k}}
+%\end{align}
+%and as $\Prob{X=x_k}$ is
+%\begin{equation*}
+%\Prob{X=x_k} = \sum_{l=1}^L \Prob{X=x_k, Y=y_l }.
+%\end{equation*}
+%therefore
+%\begin{equation*}
+%\Prob{Y=y_l \given X=x_k} = \frac{\Prob{X=x_k\given Y=y_l}\Prob{Y=y_l}}{\sum_{l=1}^L \Prob{X=x_k, Y=y_l }}
+%\end{equation*}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Putting the rules together (cont'd)}
+\begin{align*}
+\Prob{Y=y_l,X=x_k} &= \Prob{X=x_k,Y=y_l},\\
+\Prob{Y=y_l \given X=x_k}\Prob{X=x_k} &= \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l},\\
+\Prob{Y=y_l \given X=x_k} &= \frac{ \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l} } { \Prob{X=x_k} }
+\end{align*}
+\end{frame}
+
+\begin{frame}
+\frametitle{And we arrive at Bayes' Theorem}
+\begin{itemize}
+\item We have
+\begin{align}
+%\Prob{Y=y_l \given X=x_k}\Prob{X=x_k} &= \Prob{X=x_k\given Y=y_l}\Prob{Y=y_l},\\
+\Prob{Y=y_l \given X=x_k} &= \frac{\Prob{X=x_k\given Y=y_l}\Prob{Y=y_l}}{\Prob{X=x_k}}.
+\end{align}
+\item As $\Prob{X=x_k}$ is
+\begin{align}
+\Prob{X=x_k} &= \sum_{l=1}^L \Prob{X=x_k, Y=y_l },\\
+ &= \sum_{l=1}^L \Prob{X=x_k \given Y=y_l }\Prob{Y=y_l}.
+\end{align}
+\item Therefore
+\begin{equation*}
+\Prob{Y=y_l \given X=x_k} = \frac{\Prob{X=x_k\given Y=y_l}\Prob{Y=y_l}}{\sum_{l\prime=1}^L \Prob{X=x_k  \given Y=y_l\prime}\Prob{Y=y_l\prime}}
+\end{equation*}
+\item This is Bayes's Theorem. 
+\end{itemize}
+\end{frame}
+
+
+\end{document}
+
