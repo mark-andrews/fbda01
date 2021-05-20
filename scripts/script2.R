@@ -24,3 +24,29 @@ summary(M_lm)
 
 M_brm <- brm(y ~ x_1 + x_2, data = Df)
 M_brm
+
+plot(M_brm)
+prior_summary(M_brm)
+
+M_brm2 <- brm(y ~ x_1 + x_2, 
+              data = Df,
+              chains = 4,
+              cores = 4,
+              iter = 2500,
+              warmup = 500,
+              prior = set_prior('normal(0, 100)'),
+              seed = 10101)
+
+M_brm3 <- brm(y ~ x_1, 
+              data = Df,
+              chains = 4,
+              cores = 4,
+              iter = 2500,
+              warmup = 500,
+              prior = set_prior('normal(0, 100)'),
+              seed = 10101)
+
+waic(M_brm2)
+waic(M_brm3)
+loo(M_brm2)
+loo(M_brm3)
