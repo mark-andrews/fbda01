@@ -39,3 +39,25 @@ beta_plot(m + 1, n - m + 1)
 bernoulli_posterior_summary(n, m, 1, 1)
 
 get_beta_hpd(m + 1, n - m + 1)
+
+
+
+devtools::install_git("https://github.com/mark-andrews/fbda01.git", 
+                      subdir = "priorexposure")
+
+library(priorexposure)
+bernoulli_posterior_plot(250, 139, 1, 1, show_hpd = TRUE)
+bernoulli_posterior_summary(250, 139, 1, 1)
+get_beta_hpd(139 + 1, 250 - 139 + 1)
+
+beta_plot(5, 5)
+
+# uniform beta prior
+bernoulli_posterior_plot(250, 139, 1, 1, show_hpd = TRUE)
+bernoulli_posterior_summary(250, 139, 5, 5)
+get_beta_hpd(139 + 1, 250 - 139 + 1)
+# bell-shaped beta prior 
+bernoulli_posterior_plot(250, 139, 5, 5, show_hpd = TRUE)
+bernoulli_posterior_summary(250, 139, 5, 5)
+get_beta_hpd(139 + 5, 250 - 139 + 5)
+bernoulli_likelihood(250, 139)
