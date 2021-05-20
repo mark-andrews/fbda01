@@ -60,6 +60,11 @@ R experience is desirable but not essential. Although we will be using R extensi
 A computer with a working version of R or RStudio is required. R and RStudio are both available as free and open source software for PCs, Macs, and Linux computers. In addition to R and RStudio, some R packages, particularly brms, are required. Instructions on how to install R/RStudio and all required R packages are [available here](software.md).
 
 
+The following RStudio server project can be used for anyone having trouble with Stan installation.
+[![Binder](https://notebooks.gesis.org/binder/badge_logo.svg)](https://notebooks.gesis.org/binder/v2/gh/mark-andrews/hellobinder-rstan/HEAD?urlpath=rstudio)
+
+
+
 # Course programme
 
 ## Day 1
